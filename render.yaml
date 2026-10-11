@@ -1,0 +1,39 @@
+# Render "Blueprint": creates the web service on the FREE plan and asks you for the secret values.
+# Free plan = no disk: orders/settings reset on every restart or redeploy. Fine for testing only.
+services:
+  - type: web
+    name: shop-assistant
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: ADMIN_PASSWORD        # password for /admin (username: admin)
+        sync: false
+      - key: VERIFY_TOKEN          # any simple word/number mix, e.g. shopverify2026 (you paste the same in Meta)
+        sync: false
+      - key: SMS_TOKEN             # any simple letters/numbers, no symbols
+        sync: false
+      - key: CALLBACK_TOKEN        # any simple letters/numbers, no symbols
+        sync: false
+      - key: SHOP_NAME
+        value: My Shop
+      - key: OWNER_PHONE           # your WhatsApp number, e.g. 2547XXXXXXXX
+        sync: false
+      - key: LLM_PROVIDER          # anthropic | openai | gemini | zai | custom
+        value: anthropic
+      - key: LLM_API_KEY
+        sync: false
+      - key: PAYMENT_MODE          # manual_owner | manual_sms | stk
+        value: manual_owner
+      - key: PAY_METHOD            # till | paybill | send_money
+        value: till
+      - key: PAY_NUMBER            # your till / paybill / phone number
+        sync: false
+      - key: SHEET_URL             # Google Sheet link ("anyone with the link can view")
+        sync: false
+      - key: WHATSAPP_TOKEN        # fill in later, once Meta is set up (you may enter any placeholder for now)
+        sync: false
+      - key: WHATSAPP_PHONE_NUMBER_ID
+        sync: false
+      - key: WHATSAPP_APP_SECRET
+        sync: false
